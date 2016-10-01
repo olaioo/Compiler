@@ -1,25 +1,42 @@
 grammar Grammar;
 
-source:
+source
 	: ('int'|'void') 'main' '(' ')' '{' statement '}'
 	; 
 
+statement
+	: declaration
+	| attribution
+    | print
+	| conditional
+	| loopFor
+	| loopWhile
+	;
+
+declaration
+    : type declarationPart ';'
+    ;
+
+declarationPart
+    : variable (','+declarationPart)?
+    | variable '=' number (','+declarationPart)?
+    ; 
+
+attribution
+    : variable '=' attributionPart ';'
+    ; 
+
+attributionPart
+    : number (op+(variable | number))*? (','+attributionPart)?
+    | variable (op+(variable | number))*? (','+attributionPart)?
+    ;
+
 print
-	: 'printf' '(' '"' printPart* '"' (',' variable)* ')' ';'
+	: 'printf' '(' '"' printPart '"' (',' variable)* ')' ';'
 	;
 
 printPart
-	: (PrintText | printPart2)
-	;
-
-PrintText
-	: [a-Z0-9]
-	;
-
-printPart2
-	: '%d'
-	| '%f'
-	| '%c'
+	: PrintText
 	;
 
 loopFor
@@ -40,6 +57,10 @@ loopForPart3
 	| variable ('+='|'*='|'/=') number
 	| variable '=' variable op number
 	;
+
+loopWhile
+    : 'while' '(' lexpression ')' '{' statement '}'
+    ;
 
 conditional
 	: 'if' '(' lexpression ')' '{' statement '}' conditionalElse?
@@ -62,14 +83,21 @@ lexpressionPart
 	| number
 	;
 
+type
+    : 'int'
+    | 'float'
+    | 'double'
+    | 'char'
+    | 'bool'
+    ;
 
-statement
-	: declaration
-	| attribution
-	| conditional
-	| loopFor
-	| loopWhile
-	;
+op
+    : '+'
+    | '-'
+    | '*'
+    | '/'
+    | '%'
+    ;
 
 lop
     : '<'
@@ -83,6 +111,42 @@ lop
 lop2
 	: '&&'
 	| '||'
+	;
+
+variable
+    : Identifier
+    ;
+
+Identifier
+    : Nondigit (Nondigit | Digit)*
+    ;
+
+number
+    : Numid
+    ;
+
+Numid
+    : Digit (Digit)*
+    | Digit+'.'+Digit (Digit)*
+    ;
+
+PrintText
+    : Strliteral (Strliteral)*
+    ;
+
+fragment
+Nondigit
+    : [a-zA-Z_]
+    ;
+
+fragment
+Digit
+    : [0-9]
+    ;
+
+fragment
+Strliteral
+	: [a-zA-Z0-9_%\\]
 	;
 
 WS
