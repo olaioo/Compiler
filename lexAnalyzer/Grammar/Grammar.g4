@@ -1,7 +1,7 @@
 grammar Grammar;
 
 source
-	: ('int'|'void') 'main' '(' ')' '{' statement '}'
+	: (INT | VOID) MAIN '(' ')' '{' statement '}'
 	; 
 
 statement
@@ -32,7 +32,7 @@ attributionPart
     ;
 
 print
-	: 'printf' '(' '"' printPart '"' (',' variable)* ')' ';'
+	: PRINTF '(' '"' printPart '"' (',' variable)* ')' ';'
 	;
 
 printPart
@@ -40,7 +40,7 @@ printPart
 	;
 
 loopFor
-	: 'for' '(' loopForPart loopForPart2 ';' loopForPart3 ')' '{' statement '}'
+	: FOR '(' loopForPart loopForPart2 ';' loopForPart3 ')' '{' statement '}'
 	;
 
 loopForPart
@@ -59,15 +59,15 @@ loopForPart3
 	;
 
 loopWhile
-    : 'while' '(' lexpression ')' '{' statement '}'
+    : WHILE '(' lexpression ')' '{' statement '}'
     ;
 
 conditional
-	: 'if' '(' lexpression ')' '{' statement '}' conditionalElse?
+	: IF '(' lexpression ')' '{' statement '}' conditionalElse?
 	;
 
 conditionalElse
-	: 'else' '{' statement '}'
+	: ELSE '{' statement '}'
 	;
 
 lexpression
@@ -84,11 +84,11 @@ lexpressionPart
 	;
 
 type
-    : 'int'
-    | 'float'
-    | 'double'
-    | 'char'
-    | 'bool'
+    : INT
+    | FLOAT
+    | DOUBLE
+    | CHAR
+    | BOOL
     ;
 
 op
@@ -112,6 +112,19 @@ lop2
 	: '&&'
 	| '||'
 	;
+
+INT : 'int';
+VOID : 'void';
+MAIN : 'main';
+PRINTF : 'printf';
+FOR : 'for';
+WHILE : 'while';
+IF : 'if';
+ELSE : 'else';
+FLOAT : 'float';
+DOUBLE : 'double';
+CHAR : 'char';
+BOOL : 'bool';
 
 variable
     : Identifier
