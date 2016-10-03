@@ -32,7 +32,11 @@ attributionPart
     ;
 
 print
-	: PRINTF '(' '"' Word? '"' (',' variable)* ')' ';'
+	: PRINTF '(' '"' printPart '"' (',' variable)* ')' ';'
+	;
+
+printPart
+	: PrintText
 	;
 
 loopFor
@@ -127,46 +131,36 @@ variable
     ;
 
 Identifier
-    : (LOWERCASE | UPPERCASE | UNDERLINE) ( LOWERCASE | UPPERCASE | UNDERLINE | DIGIT)*
+    : Nondigit (Nondigit | Digit)*
     ;
 
 number
-    : Numberid
+    : Numid
     ;
 
-Numberid
-    : DIGIT (DIGIT)*
+Numid
+    : Digit (Digit)*
+    | Digit+'.'+Digit (Digit)*
     ;
 
-Word
-    : Identifier
-	| ( LOWERCASE | UPPERCASE | UNDERLINE | DIGIT | SPECIALCHAR )+
-    ;
-
-fragment
-LOWERCASE
-    : [a-z]+
+PrintText
+    : Strliteral (Strliteral)*
     ;
 
 fragment
-UPPERCASE
-    : [A-Z]+
+Nondigit
+    : [a-zA-Z_]
     ;
 
 fragment
-DIGIT
-    : [0-9]+
+Digit
+    : [0-9]
     ;
 
 fragment
-UNDERLINE
-    : [_]+
-    ;
-
-fragment
-SPECIALCHAR
-    : [%\\]+
-    ;
+Strliteral
+	: [a-zA-Z0-9_%\\]
+	;
 
 WS
     : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
