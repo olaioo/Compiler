@@ -1,7 +1,7 @@
 grammar Grammar;
 
 source
-	: (INT | VOID) MAIN '(' ')' '{' statement '}'
+	: (INT | VOID) MAIN '(' ')' '{' statement? '}'
 	; 
 
 statement
@@ -19,7 +19,7 @@ declaration
 
 declarationPart
     : variable (','+declarationPart)?
-    | variable '=' number (','+declarationPart)?
+    | variable '=' (number | variable ) (','+declarationPart)?
     ; 
 
 attribution
@@ -36,7 +36,7 @@ print
 	;
 
 loopFor
-	: FOR '(' loopForPart loopForPart2 ';' loopForPart3 ')' '{' statement '}'
+	: FOR '(' loopForPart loopForPart2 ';' loopForPart3 ')' '{' statement? '}'
 	;
 
 loopForPart
@@ -55,15 +55,15 @@ loopForPart3
 	;
 
 loopWhile
-    : WHILE '(' lexpression ')' '{' statement '}'
+    : WHILE '(' lexpression ')' '{' statement? '}'
     ;
 
 conditional
-	: IF '(' lexpression ')' '{' statement '}' conditionalElse?
+	: IF '(' lexpression ')' '{' statement? '}' conditionalElse?
 	;
 
 conditionalElse
-	: ELSE '{' statement '}'
+	: ELSE '{' statement? '}'
 	;
 
 lexpression
