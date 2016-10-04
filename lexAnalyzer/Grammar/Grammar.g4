@@ -1,4 +1,4 @@
-grammar Grammar;
+Grammar Grammar;
 
 source
 	: (INT | VOID) MAIN '(' ')' '{' statement? '}'
@@ -32,7 +32,7 @@ attributionPart
     ;
 
 print
-	: PRINTF '(' '"' Word? '"' (',' variable)* ')' ';'
+	: PRINTF '(' StringLiteral (',' variable)* ')' ';'
 	;
 
 loopFor
@@ -138,9 +138,20 @@ Numberid
     : DIGIT (DIGIT)*
     ;
 
-Word
-    : Identifier
-	| ( LOWERCASE | UPPERCASE | UNDERLINE | DIGIT | SPECIALCHAR )+
+StringLiteral
+    :   '"' SCharSequence? '"'
+    ;
+
+fragment
+SCharSequence
+    :   SChar+
+    ;
+
+fragment
+SChar
+    :   ~["\\\r\n]
+    |   '\\\n'   // Added line
+    |   '\\\r\n' // Added line
     ;
 
 fragment
