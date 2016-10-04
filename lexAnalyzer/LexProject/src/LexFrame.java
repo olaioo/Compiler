@@ -19,6 +19,8 @@ public class LexFrame {
 
 	private JFrame frmLexicalAnalyser;
 
+	private String file=null;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -69,7 +71,8 @@ public class LexFrame {
 		sl_panel.putConstraint(SpringLayout.EAST, btnOpenFile, -339, SpringLayout.EAST, panel);
 		btnOpenFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				txtrAbc.setText(GrammarTest.arqExplorer());
+				file=GrammarTest.arqExplorer();
+				txtrAbc.setText((file!=null)?file:txtrAbc.getText());
 			}
 		});
 		panel.add(btnOpenFile);
@@ -86,7 +89,8 @@ public class LexFrame {
 		JMenuItem mntmOpenNewFile = new JMenuItem("Load file");
 		mntmOpenNewFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				txtrAbc.setText(GrammarTest.arqExplorer());
+				file=GrammarTest.arqExplorer();
+				txtrAbc.setText((file!=null)?file:txtrAbc.getText());
 			}
 		});
 		mnNewMenu.add(mntmOpenNewFile);

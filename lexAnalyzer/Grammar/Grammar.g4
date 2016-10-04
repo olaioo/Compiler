@@ -1,4 +1,4 @@
-Grammar Grammar;
+grammar Grammar;
 
 source
 	: (INT | VOID) MAIN '(' ')' '{' statement? '}'
