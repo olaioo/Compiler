@@ -41,7 +41,7 @@ ASSIGN options { paraphrase = "="; } : "=" ;
 OPEN options { paraphrase = "("; } : "(" ;
 CLOSE options { paraphrase = ")"; } : ")" ;
 
-WS_ : (' ' | '\n' {newline();}) {_ttype = Token.SKIP; };
+WS_ : (' ' | '\n' | '\t' {newline();}) {_ttype = Token.SKIP; };
 
 SL_COMMENT : "//" (~'\n')* '\n' {_ttype = Token.SKIP; newline (); };
 

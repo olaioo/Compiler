@@ -15,7 +15,7 @@ options
 }
 
 program
-	: type TK_main OPEN CLOSE LCURLY (statement)* RCURLY EOF
+	: TK_main OPEN CLOSE LCURLY (statement)* RCURLY EOF
 	; 
 
 statement
