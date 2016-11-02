@@ -37,13 +37,11 @@ attribution
     ;
 
 expr
-	: term
-    | expr addop term
+    : term (addop expr)?
     ;
 
 term
-    : num
-    | term mulop num
+    : num (mulop term)?
     ;
 
 num

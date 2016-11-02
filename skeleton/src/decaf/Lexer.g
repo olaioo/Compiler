@@ -30,6 +30,17 @@ DIGIT options { paraphrase = "a number"; }
     : ('0'..'9')+ ('.' ('0'..'9')+ )?
     ;
 
+ADD options { paraphrase = "+"; } : "+" ;
+SUB options { paraphrase = "-"; } : "-" ;
+MULT options { paraphrase = "*"; } : "*" ;
+DIV options { paraphrase = "/"; } : "/" ;
+
+COLON options { paraphrase = ","; } : "," ;
+ENDSTAT options { paraphrase = ";"; } : ";" ;
+ASSIGN options { paraphrase = "="; } : "=" ;
+OPEN options { paraphrase = "("; } : "(" ;
+CLOSE options { paraphrase = ")"; } : ")" ;
+
 WS_ : (' ' | '\n' {newline();}) {_ttype = Token.SKIP; };
 
 SL_COMMENT : "//" (~'\n')* '\n' {_ttype = Token.SKIP; newline (); };

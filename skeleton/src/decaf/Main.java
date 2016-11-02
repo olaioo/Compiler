@@ -28,9 +28,54 @@ class Main {
 		
 		        			switch (token.getType())
 		        			{
-		        			case DecafScannerTokenTypes.ID:
-		        				type = " IDENTIFIER";
-		        				break;
+				    			case DecafScannerTokenTypes.ID:
+				    				type = " IDENTIFIER";
+				    				break;
+								case DecafScannerTokenTypes.TK_int:
+				    				type = " INTTYPE";
+				    				break;
+								case DecafScannerTokenTypes.TK_float:
+				    				type = " FLOATTYPE";
+				    				break;
+								case DecafScannerTokenTypes.TK_main:
+				    				type = " MAINMETHOD";
+				    				break;
+								case DecafScannerTokenTypes.DIGIT:
+				    				type = " INTLITERAL";
+				    				break;
+								case DecafScannerTokenTypes.LCURLY:
+				    				type = " OPENCURLY";
+				    				break;
+								case DecafScannerTokenTypes.RCURLY:
+				    				type = " CLOSECURLY";
+				    				break;
+								case DecafScannerTokenTypes.ADD:
+				    				type = " ADDOP";
+				    				break;
+								case DecafScannerTokenTypes.SUB:
+				    				type = " SUBOP";
+				    				break;
+								case DecafScannerTokenTypes.MULT:
+				    				type = " MULOP";
+				    				break;
+								case DecafScannerTokenTypes.DIV:
+				    				type = " DIVOP";
+				    				break;
+								case DecafScannerTokenTypes.COLON:
+				    				type = " COLON";
+				    				break;
+								case DecafScannerTokenTypes.ENDSTAT:
+				    				type = " SEMICOLON";
+				    				break;
+								case DecafScannerTokenTypes.ASSIGN:
+				    				type = " EQUAL";
+				    				break;
+								case DecafScannerTokenTypes.OPEN:
+				    				type = " OPENPAREN";
+				    				break;
+								case DecafScannerTokenTypes.CLOSE:
+				    				type = " CLOSEPAREN";
+				    				break;
 		        			}
 		        			System.out.println (token.getLine() + type + " " + text);
 		        		}
