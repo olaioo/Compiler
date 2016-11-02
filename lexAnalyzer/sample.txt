@@ -1,9 +1,0 @@
-int main() {
-	for(int i=0;i<4;i++){
-		if(a==b&&b==c){
-			a=b;
-		}else{
-			printf("%d",a);
-		}
-	}
-}
