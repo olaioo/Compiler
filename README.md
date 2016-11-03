@@ -6,7 +6,7 @@ Instructions to test the project using the tool Ant:
 
 Note: The file sample.txt contains the code to be tested.
 
-First of all, compile the project using the Ant command:
+First of all, open the folder skeleton and compile the project using the Ant command::
 
 ```
 ant
